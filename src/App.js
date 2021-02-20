@@ -1,11 +1,6 @@
 import React from 'react';
-import './App.css';
-import Header from './components/Header'
-import Balance from './components/Balance'
-import  IncomeExpenses from './components/IncomeExpenses'
-import  TransactionList from './components/TransactionList'
-import AddTransaction from './components/AddTransaction'
 import {GlobalProvider} from './context/Globalstate';
+import Home from './components/home';
 
 
 const App=()=>{
@@ -13,13 +8,8 @@ const App=()=>{
   
     return (
       <GlobalProvider>
-        <Header/>
-        <div className="container">
-        <Balance/>
-        <IncomeExpenses/>
-        <TransactionList/>
-        <AddTransaction/>
-        </div>
+        <Home/>
+        
       </GlobalProvider>
     );
 

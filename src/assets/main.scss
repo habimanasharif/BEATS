@@ -1,0 +1,200 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.container{
+    margin-top: 5%;
+}
+.row{
+    border-radius: 20px;
+}
+.sidebar{
+    padding: 0px !important;
+background: #f9dfce;
+height: 510px;
+border-bottom-left-radius: 10px;
+border-top-left-radius: 10px;
+}
+.mainbar{
+    background-color: #fff;
+    height:510px;
+    border-bottom-right-radius: 10px;
+border-top-right-radius: 10px;
+position: relative;
+
+}
+.top-color{
+    background: white;
+    width: 100%;
+    background-size: cover;
+    border-top-left-radius:10px ;
+    height: 30%;
+    z-index: -1;
+}
+.album-cover{
+    width: 250px;
+    height: 200px;
+    background:url(./imgs/Folder.jpg);
+    background-size: cover;
+    margin-left: -150px;
+    margin-top: 50px;
+    z-index: 1;
+    border-radius: 15px;
+}
+.controls{
+    width: 150%;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.5);
+    margin-top: 26%;
+    margin-left: -50%;
+    z-index: 1;
+    border-radius: 8px;
+}
+.play-line{
+    display:inline-block;
+    width: 80%;
+    height: 3px;
+    background:#efefef;
+    margin-top:25px;
+}
+.controls span{
+    margin-top:25px;
+}
+#onplay{
+    margin-top: 0px !important;
+    background: #f9dfce;
+    width: 50%;
+    height: 3px;
+    position: relative;
+}
+
+#onplay .far{
+top: -5px !important;
+left: 100%;
+position: absolute;
+z-index: 1;
+}
+.playlist{
+    width: 69%;
+    height: 70%;
+    position: absolute;
+    top:50px;
+    left: 200px;
+    padding: 20px;
+}
+.playlist p{
+    line-height: normal;
+    font-weight: bold;
+    color: #f3caae;
+
+}
+.playlist h4{
+    line-height: normal;
+    font-weight: bold;
+    margin-top:-10px;
+}
+ .play-btn{
+     display: inline-block;
+     height: 30px;
+     width: 30px;
+     border-radius: 50%;
+     background:#f3caae ;
+     text-align: center;
+     align-items: center;
+ }
+ .play-btn .fas{
+     margin-top: 3px;
+     margin-left: 3px;
+     color: #fff;
+     
+ }
+ .playlist button{
+     background: #fff;
+     border: 1px solid #f3caae ;
+     border-radius: 25px;
+     color:#f3caae;
+     width: 115px;
+     font-size: 14px;
+     height: 30px;
+     font-weight: bold;
+     margin-left: 5px;
+ }
+ .playlist-list{
+     width: 100%;
+     height:260px ;
+     margin-top: 10px;
+     overflow: auto;
+ }
+
+ .song{
+     width: 100%;
+     padding-top: 5px;
+     height: 40px;
+     border-bottom: 2px solid #efefef;
+     position: relative;
+ }
+ .p-btn{
+     margin-left: 2px;
+     font-size: 14px;
+     
+ }
+ .heart{
+margin-left: 5px;
+color: #f3caae;
+font-size: 14px;
+ }
+ .song-name{
+ margin-left:10px;
+ }
+ .song-duration{
+     position: absolute;
+     right: 3px;
+ }
+
+ .controls-btn{
+    padding-left:110px ;
+    padding-top: 12px; 
+ }
+ .controls-btn .far{
+    font-size: medium; 
+    margin-left: 7px;
+ }
+ .controls-btn span{
+    cursor: pointer;
+ }
+ .controls span{
+     margin-left: 8px;
+     font-size: 14px;
+ }
+ .controls-details{
+     position: relative;
+     margin-top: -20px;
+     padding-left: 110px;
+ }
+ .controls-cover{
+     display: inline-block;
+     background:url(./imgs/AlbumArtSmall.jpg);
+     background-size: cover;
+     height: 40px;
+     width: 40px;
+     border-radius: 10px;
+ }
+ .controls-name{
+     position: absolute;
+     font-weight: bold;
+     top:12px;
+ }
+ .start{
+     margin-top:20px !important;
+ }
+ @keyframes runOnplay {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+ 
+
