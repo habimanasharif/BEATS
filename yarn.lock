@@ -9043,6 +9043,11 @@ react-scripts@3.4.3:
   optionalDependencies:
     fsevents "2.1.2"
 
+react-simple-animate@^3.3.11:
+  version "3.3.11"
+  resolved "https://registry.yarnpkg.com/react-simple-animate/-/react-simple-animate-3.3.11.tgz#04bb03ffe707e4e7cab4e22a03a93f20415b39de"
+  integrity sha512-kt2SKJ4Gw3klTmRbik/9R741fPiVRVlxkXvV0c3uu8NqOtdc5ITis62WcdiKH6U5QhCjXNfLW9lrbQ4cAYujyA==
+
 react@^16.13.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.13.1.tgz#2e818822f1a9743122c063d6410d85c1e3afe48e"

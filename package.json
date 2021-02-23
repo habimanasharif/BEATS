@@ -20,7 +20,8 @@
     "react-dom": "^16.13.1",
     "react-icon": "^1.0.0",
     "react-icons": "^4.2.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-simple-animate": "^3.3.11"
   },
   "scripts": {
     "start": "react-scripts start",
