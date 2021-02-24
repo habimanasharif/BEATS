@@ -63,11 +63,15 @@ position: relative;
 #onplay{
     margin-top: 0px !important;
     background: #f9dfce;
-    width: 50%;
     height: 3px;
     position: relative;
 }
-
+.onplay0{
+width: 0%;
+}
+.onplay100{
+width:100%;
+}
 #onplay .far{
 top: -5px !important;
 left: 100%;

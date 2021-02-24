@@ -1,6 +1,6 @@
-# Expense Tracker
+# Beats Audio player
 
-## This is an expense tracker web application
+## This is an Audio Player Web Application
 
 ### Installation
 Run
