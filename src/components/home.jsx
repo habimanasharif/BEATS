@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { AnimateKeyframes } from 'react-simple-animate';
+import React, { useState ,useEffect} from 'react';
 import { FaPlay } from 'react-icons/fa'
 import { BsCircle } from 'react-icons/bs'
 import { GrPause, GrPlay, GrChapterNext, GrChapterPrevious } from 'react-icons/gr'
@@ -12,10 +11,17 @@ import Playlist from './Playlist';
 const Home = () => {
     const [play, setPlay] = useState(false);
     let [playBtn, setPlayBtn] = useState(<GrPause className="far" />)
-    let [onplayWidth, setOnplayWidth] = useState("onplay0");
+    const[playStatus,setPlayStatus]=useState("initial")
+   
+    useEffect(() => {
+        if(playStatus==='initial'){
+            const onplayed= document.getElementById("onplay");
+            onplayed.style.animation="runOnplay 135s linear"
+        }
+        return undefined;
+    }, [playStatus])
     const onplay = e => {
         e.preventDefault();
-        setOnplayWidth("onplay100")
         if (!play) {
             setPlay(true)
             setPlayBtn(<GrPlay className="far" />)
@@ -62,26 +68,17 @@ const Home = () => {
                             <div className="col-3 controls-btn">
                                 <span><FiShuffle className="far" /></span>
                                 <span><GrChapterPrevious className="far" /></span>
-                                <span onClick={onplay} >{playBtn}</span>
+                                <span onClick={onplay} class="far fa-play" id="paused"   >{playBtn}</span>
                                 <span><GrChapterNext className="far" /></span>
                                 <span><FiRepeat className="far" /></span>
                             </div>
                             <div className="col-6">
                                 <span className="start">00:00</span> <span className="play-line">
-                                    <AnimateKeyframes
-                                        play
-                                        pause={play}
-                                        delay={0}
-                                        duration={135}
-                                        keyframes={[
-                                           { 0:'width: 0%'},
-                                           { 100:'width: 100%'},
-                                        ]}
-                                    >
-                                        <div className={onplayWidth} id="onplay">
+            
+                                        <div className="onplay" id="onplay">
 
                                             <BsCircle className="far" /></div>
-                                    </AnimateKeyframes>
+
                                 </span> <span>01:20</span>
                             </div>
                         </div>
