@@ -14,7 +14,7 @@ const Home = () => {
     const[playStatus,setPlayStatus]=useState("initial")
    
     useEffect(() => {
-        if(playStatus==='initial'){
+        if(playStatus==='play'){
             const onplayed= document.getElementById("onplay");
             onplayed.style.animation="runOnplay 135s linear"
         }
@@ -24,11 +24,13 @@ const Home = () => {
         e.preventDefault();
         if (!play) {
             setPlay(true)
+            setPlayStatus('play');
             setPlayBtn(<GrPlay className="far" />)
            
         }
         else {
             setPlay(false);
+            setPlayStatus('pause');
             setPlayBtn(<GrPause className="far" />)
         }
     }
