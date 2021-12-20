@@ -5,19 +5,45 @@ import { GrPause, GrPlay, GrChapterNext, GrChapterPrevious } from 'react-icons/g
 import { } from 'react-icons/im'
 import { FiRepeat, FiShuffle } from 'react-icons/fi'
 import Playlist from './Playlist';
+import sweeterman from '../assets/music/sweeterman.mp3'
+import {readdirSync} from 'fs'
 
 
 
 const Home = () => {
     const [play, setPlay] = useState(false);
-    let [playBtn, setPlayBtn] = useState(<GrPause className="far" />)
+    let [playBtn, setPlayBtn] = useState(<GrPlay className="far" />)
     const[playStatus,setPlayStatus]=useState("initial")
-   
+
+    const songs =readdirSync('./music');
+    console.log(songs);
+    
     useEffect(() => {
+        const audio= document.getElementById('audio');
+    const onplayed= document.getElementById("onplay");
+    const  progressContainer =document.getElementById("progressContainer")
+    function updateProgress(e){
+        const {duration,currentTime}=e.srcElement;
+        const progressPercent =(currentTime/duration)*100;
+        onplayed.style.width =`${progressPercent}%`;
+ 
+    }
+    function setProgress(e){
+        const width = this.clientWidth;
+        const clickX=e.offsetX;
+        const duration =audio.duration;
+        audio.currentTime =(clickX/width)*duration;
+    }
         if(playStatus==='play'){
-            const onplayed= document.getElementById("onplay");
-            onplayed.style.animation="runOnplay 135s linear"
+            
+            audio.play();
+            audio.addEventListener('timeupdate',updateProgress);
         }
+        if(playStatus==='pause'){
+       onplayed.style.animationPlayState='paused'
+       audio.pause();
+        }
+        progressContainer.addEventListener('click',setProgress);
         return undefined;
     }, [playStatus])
     const onplay = e => {
@@ -25,13 +51,13 @@ const Home = () => {
         if (!play) {
             setPlay(true)
             setPlayStatus('play');
-            setPlayBtn(<GrPlay className="far" />)
+            setPlayBtn(<GrPause className="far" />)
            
         }
         else {
             setPlay(false);
             setPlayStatus('pause');
-            setPlayBtn(<GrPause className="far" />)
+            setPlayBtn(<GrPlay className="far" />)
         }
     }
 
@@ -74,8 +100,8 @@ const Home = () => {
                                 <span><GrChapterNext className="far" /></span>
                                 <span><FiRepeat className="far" /></span>
                             </div>
-                            <div className="col-6">
-                                <span className="start">00:00</span> <span className="play-line">
+                            <div className="col-6" >
+                                <span className="start">00:00</span> <span className="play-line" id="progressContainer">
             
                                         <div className="onplay" id="onplay">
 
@@ -83,6 +109,7 @@ const Home = () => {
 
                                 </span> <span>01:20</span>
                             </div>
+                            <audio src={sweeterman} id="audio"></audio>
                         </div>
                     </div>
                 </div>

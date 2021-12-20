@@ -53,7 +53,7 @@ position: relative;
 .play-line{
     display:inline-block;
     width: 80%;
-    height: 3px;
+    height: 7px;
     background:#efefef;
     margin-top:25px;
 }
@@ -63,13 +63,13 @@ position: relative;
 #onplay{
     margin-top: 0px !important;
     background: #f9dfce;
-    height: 3px;
+    height: 7px;
     width: 0%;
     position: relative;
 }
 
 #onplay .far{
-top: -5px !important;
+top: -4px !important;
 left: 100%;
 position: absolute;
 z-index: 1;
