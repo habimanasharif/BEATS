@@ -125,6 +125,25 @@ z-index: 1;
      margin-top: 10px;
      overflow: auto;
  }
+ * {
+    scrollbar-width:thin;
+    scrollbar-color:#f3caae #fff;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #fff;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #f3caae ;
+    border-radius: 20px;
+    border: 3px solid #fff;
+  }
 
  .song{
      width: 100%;
