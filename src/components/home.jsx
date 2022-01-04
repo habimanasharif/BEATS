@@ -124,7 +124,7 @@ const Home = () => {
                     <div className="top-color"></div>
 
                 </div>
-                <div className="col-8 mainbar">
+                <div className="col-md-8 col-sm-12 mainbar">
                     <div className="album-cover shadow-lg">
 
                     </div>
@@ -141,6 +141,11 @@ const Home = () => {
 
                         </div>
                     </div>
+                    <div className="small-controls">
+                        <div><span><FiShuffle className="far" /></span></div>
+                        <div><span onClick={onplay} class="far fa-play" id="paused"   >{playBtn}</span></div>
+                        <div><span><FiRepeat className="far" /></span></div>
+                    </div>
                     <div className="controls shadow">
                         <div className="row">
                             <div className="col-3 controls-details">
@@ -154,14 +159,14 @@ const Home = () => {
                                 <span><GrChapterNext className="far" id="next"/></span>
                                 <span><FiRepeat className="far" /></span>
                             </div>
-                            <div className="col-6" >
-                                <span className="start">{cur}</span> <span className="play-line" id="progressContainer">
+                            <div className="col-md-6 col-sm-10" >
+                                <span className="start" >{cur}</span> <span className="play-line" id="progressContainer">
             
                                         <div className="onplay" id="onplay">
 
                                             <BsCircle className="far" /></div>
 
-                                </span> <span>{end}</span>
+                                </span> <span className="end">{end}</span>
                             </div>
                             <audio src={song} id="audio"></audio>
                         </div>

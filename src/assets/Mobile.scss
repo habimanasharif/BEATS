@@ -1,0 +1,69 @@
+@media (max-width: 479px) {
+	.sidebar{
+        display: none;
+    }
+    .album-cover{
+        display: none;
+    }
+    .controls-btn{
+        display: none;
+    }
+    .controls-details{
+        display: none;
+    }
+    .playlist{
+        position:relative;
+        left: auto;
+        width: 100%;
+        font-size: 0.9em;
+        top:0px
+    }
+    .controls{
+        width: 100%;
+        margin-left: 0px;
+        .start{
+            font-size: 10px;
+        }
+        .end{
+            font-size: 10px;
+        }
+        .play-line{
+            width: 70%;
+        }
+    }
+    
+    .small-controls{
+        display: flex;
+        position: absolute;
+        bottom:80px;
+        flex-direction: row;
+        width: 90%;
+        padding-left: 20px;
+        padding-right: 20px;
+        height: 20px;
+        justify-content: space-between;
+        div{
+            height:100%;
+            width: 30%;
+            text-align: center;
+        }
+    }
+}
+@media (max-width:1012px) {
+    .container{
+        margin: 0px;
+        max-width: 100%;
+        height: 100vh;
+        span{
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    }
+    .col-3{
+        padding-left: 90px;
+        padding-right:5px;
+    }
+    .controls{
+        margin-top: 30%;
+    }
+}
