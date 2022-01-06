@@ -125,6 +125,27 @@ z-index: 1;
      margin-top: 10px;
      overflow: auto;
  }
+ .playlists-list{
+    width: 100%;
+    display: flex;
+    height:260px ;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    margin-top: 10px;
+    overflow: auto;
+    .playlist-cover{
+     width: 30%;
+     background:url(./imgs/Folder.jpg);
+    background-size: cover;
+    margin-top:5px;
+     height: 140px;
+     background-color: red;
+    }
+}
+
+
  * {
     scrollbar-width:thin;
     scrollbar-color:#f3caae #fff;

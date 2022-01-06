@@ -5,6 +5,7 @@ import { GrPause, GrPlay, GrChapterNext, GrChapterPrevious } from 'react-icons/g
 import { } from 'react-icons/im'
 import { FiRepeat, FiShuffle } from 'react-icons/fi'
 import Playlist from './Playlist';
+import PlaylistContainer from './playlistContainer';
 
 
 
@@ -12,6 +13,7 @@ import Playlist from './Playlist';
 const Home = () => {
     const [play, setPlay] = useState(false);
     let [playBtn, setPlayBtn] = useState(<GrPlay className="far" />)
+    const [state,setState]=useState("PLAYLISTS");
     const[playStatus,setPlayStatus]=useState("initial")
     const [cur,setCur]=useState("00:00");
      const [end,setEnd]=useState('00:00');
@@ -96,6 +98,7 @@ const Home = () => {
        onplayed.style.animationPlayState='paused'
        audio.pause();
         }
+
         progressContainer.addEventListener('click',setProgress);
         return undefined;
     }, [playStatus,song,files])
@@ -111,6 +114,14 @@ const Home = () => {
             setPlay(false);
             setPlayStatus('pause');
             setPlayBtn(<GrPlay className="far" />)
+        }
+    }
+    const changeStateView=(e)=>{
+        e.preventDefault();
+        if(state==='PLAYLISTS'){
+        setState('SONGS')}
+        else{
+            setState('PLAYLISTS')
         }
     }
 
@@ -132,14 +143,19 @@ const Home = () => {
                         <p> Drake_Scopion</p>
                         <h4>Chillin' Beats</h4>
                         <span className="play-btn"><FaPlay className="fas" /></span>
-                        <button>ADDPLAYLIST</button>
-                        <div className="playlist-list" id="playlist-list">
+                        <button onClick={changeStateView}>{state}</button>
+                        {state==='PLAYLISTS'?(<>
+                            <PlaylistContainer/>
+                        </>):(<>
+                            <div className="playlist-list" id="playlist-list">
                             {audiofiles.map((element)=>(song===element.src?
                             <Playlist song={element} play={changeAudioSrc}status={false}/>
                             :<Playlist song={element} play={changeAudioSrc} status={true}/>))}
 
 
                         </div>
+                        </>)}
+                        
                     </div>
                     <div className="small-controls">
                         <div><span><FiShuffle className="far" /></span></div>
