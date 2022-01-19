@@ -1,16 +1,16 @@
 import React from 'react';
-import {GlobalProvider} from './context/Globalstate';
+import { Provider } from 'react-redux';
 import Home from './components/home';
-
+import store from './redux/store';
 
 const App=()=>{
  
   
     return (
-      <GlobalProvider>
+      <Provider store={store}>
         <Home/>
         
-      </GlobalProvider>
+        </Provider>
     );
 
 

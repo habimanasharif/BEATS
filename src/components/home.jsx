@@ -6,38 +6,36 @@ import { } from 'react-icons/im'
 import { FiRepeat, FiShuffle } from 'react-icons/fi'
 import Playlist from './Playlist';
 import PlaylistContainer from './playlistContainer';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import fetchSongAction from '../redux/actions/song/fetchSongs';
 
 
 
 
-const Home = () => {
+const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
     const [play, setPlay] = useState(false);
+    const [status, setStatus] = useState('initial');
+    const [sng,setSng]=useState([]);
     let [playBtn, setPlayBtn] = useState(<GrPlay className="far" />)
     const [state,setState]=useState("PLAYLISTS");
     const[playStatus,setPlayStatus]=useState("initial")
     const [cur,setCur]=useState("00:00");
      const [end,setEnd]=useState('00:00');
-    const importAll = r => r.keys().map(r);
-    const files = importAll(require.context('../assets/music/', false, /\.mp3$/));
-    const [song,setSong]=useState(files[0]);
-    const audiofiles=files.map((element)=>{
-        const array1=element.split('.');
-        const array2=array1[0].split('/');
-        const len=array2.length;
-        const name=array2[len-1]
-        if(song===element)
-        {return {
-            name,
-            src:element,
-        }}
-        else{
-            return {
-                name,
-                src:element,
-            } 
-        }
-    })
+    const [files,setFiles]=useState([]);
+    const [song,setSong]=useState("");
+
     useEffect(() => {
+        if (status === 'initial') {
+            fetchAction('61e68398fd9c0d002eeb6d97');
+            if (fetchSongs.status === 'success') {
+              setSng(fetchSongs.data);
+              setFiles(fetchSongs.data);
+              setSong(fetchSongs.data[0].filename);
+              setStatus('success');
+            }
+            
+          }
         const audio= document.getElementById('audio');
     const onplayed= document.getElementById("onplay");
     const  progressContainer =document.getElementById("progressContainer")
@@ -101,7 +99,7 @@ const Home = () => {
 
         progressContainer.addEventListener('click',setProgress);
         return undefined;
-    }, [playStatus,song,files])
+    }, [playStatus, song, files, fetchSongs, status, sng, fetchAction])
     const onplay = e => {
         e.preventDefault();
         if (!play) {
@@ -148,7 +146,7 @@ const Home = () => {
                             <PlaylistContainer/>
                         </>):(<>
                             <div className="playlist-list" id="playlist-list">
-                            {audiofiles.map((element)=>(song===element.src?
+                            {sng.map((element)=>(song===element.filename?
                             <Playlist song={element} play={changeAudioSrc}status={false}/>
                             :<Playlist song={element} play={changeAudioSrc} status={true}/>))}
 
@@ -184,7 +182,7 @@ const Home = () => {
 
                                 </span> <span className="end">{end}</span>
                             </div>
-                            <audio src={song} id="audio"></audio>
+                            <audio src={`https://beats-api.herokuapp.com/song/play/${song}`} id="audio"></audio>
                         </div>
                     </div>
                 </div>
@@ -193,5 +191,14 @@ const Home = () => {
         </div>
     )
 }
+Home.propTypes = {
+    fetchSongAction: PropTypes.func.isRequired,
+    fetchSongs: PropTypes.objectOf(PropTypes.any).isRequired,
+  };
+  const mapStateToProps = ({ fetchSongs }) => ({
+    fetchSongs,
+  });
 
-export default Home;
+export default connect(mapStateToProps, {
+    fetchSongAction,
+})(Home);

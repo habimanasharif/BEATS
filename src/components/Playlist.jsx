@@ -15,7 +15,7 @@ const Home = ({song,play,status}) => {
     }, [status,playing])
     const onclick= (e)=>{
         e.preventDefault(); 
-        play(song.src);
+        play(song.filename);
         
       }
 
@@ -40,7 +40,7 @@ const Home = ({song,play,status}) => {
                 <span className="heart" onClick={onlike}>
                 {heart}
             </span>
-            <span className="song-name">{song.name}</span>
+            <span className="song-name">{song.originalname}</span>
             <span className="song-duration">1:20</span>
         </div>
     )
