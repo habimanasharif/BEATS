@@ -24,6 +24,8 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
      const [end,setEnd]=useState('00:00');
     const [files,setFiles]=useState([]);
     const [song,setSong]=useState("");
+    const[cover,setCover]=useState("c9c27aa71e1a3aa54a3ef3dee82d9be7.jpg")
+    const[playlistName,setPlaylistName]=useState("Chillin Beats")
 
     useEffect(() => {
         if (status === 'initial') {
@@ -122,6 +124,11 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
             setState('PLAYLISTS')
         }
     }
+    
+    const changeAlbum=(album)=>{
+   setCover(album.cover)
+   setPlaylistName(album.albumname)
+    }
 
     const changeAudioSrc=(src)=>{
         setSong(src)
@@ -134,16 +141,16 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
 
                 </div>
                 <div className="col-md-8 col-sm-12 mainbar">
-                    <div className="album-cover shadow-lg">
+                    <div style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${cover})` }} className="album-cover shadow-lg" >
 
                     </div>
                     <div className="playlist">
                         <p> Drake_Scopion</p>
-                        <h4>Chillin' Beats</h4>
+                        <h4>{playlistName}</h4>
                         <span className="play-btn"><FaPlay className="fas" /></span>
                         <button onClick={changeStateView}>{state}</button>
                         {state==='PLAYLISTS'?(<>
-                            <PlaylistContainer/>
+                            <PlaylistContainer changeAlbum={changeAlbum}/>
                         </>):(<>
                             <div className="playlist-list" id="playlist-list">
                             {sng.map((element)=>(song===element.filename?
@@ -163,7 +170,7 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
                     <div className="controls shadow">
                         <div className="row">
                             <div className="col-3 controls-details">
-                                <span className="controls-cover shadow"></span>
+                                <span className="controls-cover shadow" style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${cover})` }}></span>
                                 <span className="controls-name">Nice For What</span>
                             </div>
                             <div className="col-3 controls-btn">

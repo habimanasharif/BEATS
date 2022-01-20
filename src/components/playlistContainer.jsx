@@ -2,8 +2,9 @@ import React, {useState,useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchAlbumAction from '../redux/actions/album/fetchAlbum';
+import SinglePlaylist from './singlePlaylist';
 
-const PlaylistContainer=({ fetchAlbumAction: fetchAction, fetchAlbum })=>{
+const PlaylistContainer=({ fetchAlbumAction: fetchAction, fetchAlbum,changeAlbum })=>{
     const [status, setStatus] = useState('initial');
     const [playlist,setPlaylist]=useState([]);
     useEffect(() => {
@@ -22,7 +23,7 @@ const PlaylistContainer=({ fetchAlbumAction: fetchAction, fetchAlbum })=>{
 
     return(
         <div className="playlists-list">
-         {playlist.map((playlist)=>(<div className='playlist-cover' style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${playlist.cover})` }}></div>))}
+         {playlist.map((playlist)=>(<SinglePlaylist data={playlist} changeAlbum={changeAlbum}/>))}
       
         </div>
     )

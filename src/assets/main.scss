@@ -34,7 +34,6 @@ position: relative;
 .album-cover{
     width: 250px;
     height: 200px;
-    background:url(./imgs/Folder.jpg);
     background-size: cover;
     margin-left: -150px;
     margin-top: 50px;
@@ -215,7 +214,7 @@ font-size: 14px;
  }
  .controls-cover{
      display: inline-block;
-     background:url(./imgs/AlbumArtSmall.jpg);
+
      background-size: cover;
      height: 40px;
      width: 40px;
@@ -238,5 +237,21 @@ font-size: 14px;
     }
   }
   
- 
-
+ .playlist-player{
+     position: absolute;
+     bottom: 100px;
+     margin-left: 5px;
+ }
+ .playlist-name{
+     position: absolute;
+     bottom: 57px;
+     font-size: 1em;
+     font-weight: bold;
+     left:auto;
+ }
+.sings-number{
+    position: absolute;
+    bottom: 33px; 
+    color:black !important;
+    font-size:0.8em;
+}
