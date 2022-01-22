@@ -45,13 +45,34 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
     const  next =document.getElementById("next")
     function updateProgress(e){
         const {duration,currentTime}=e.srcElement;
-        const sec=Math.floor(((duration/60)%1)*100);
-        const min=Math.floor(duration/60);
-        setEnd(`${min}:${sec}`);
+        var sec
+        if(Math.floor(duration) >= 60){
+			
+			for (var i = 1; i<=60; i++){
+				if(Math.floor(duration)>=(60*i) && Math.floor(duration)<(60*(i+1))) {
+					sec = Math.floor(duration) - (60*i);
+				}
+			}
+		}else{
+            sec=isNaN(duration)===true?0: Math.floor(currentTime);
+		 }
+        const min= isNaN(duration)===true?0:Math.floor(duration/60);
+        setEnd(`${min}:${sec<10?`0${sec}`:sec}`);
         const progressPercent =(currentTime/duration)*100;
-        const curSec=Math.floor(((currentTime/3600))*100);
+        //const curSec=Math.floor(((currentTime/60)%1)*100);
+        var curSec
+        if(Math.floor(currentTime) >= 60){
+			
+			for (var i = 1; i<=60; i++){
+				if(Math.floor(currentTime)>=(60*i) && Math.floor(currentTime)<(60*(i+1))) {
+					curSec = Math.floor(currentTime) - (60*i);
+				}
+			}
+		}else{
+            curSec = Math.floor(currentTime);
+		 }
         const curMin=Math.floor(currentTime/60);
-        setCur(`${curMin}:${curSec}`)
+        setCur(`${curMin}:${curSec<10?`0${curSec}`:curSec}`)
         onplayed.style.width =`${progressPercent}%`;
  
     }
@@ -62,21 +83,24 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
         audio.currentTime =(clickX/width)*duration;
     }
     function nextSong(){
-        let songindex=files.indexOf(song);
+        
+        const songnames=files.map((s)=>s.filename)
+        let songindex=songnames.indexOf(song);
         songindex++
         if(songindex>files.length-1){
             songindex=0;
         }
-        setSong(files[songindex]);
+        setSong(songnames[songindex]);
         
     }
     function prevSong(){
-        let songindex=files.indexOf(song);
+        const songnames=files.map((s)=>s.filename)
+        let songindex=songnames.indexOf(song);
         songindex--
         if(songindex < 0){
-            songindex= files.length-1;
+            songindex= songnames.length-1;
         }
-        setSong(files[songindex]);
+        setSong(songnames[songindex]);
         
     }
     prev.addEventListener('click',prevSong);

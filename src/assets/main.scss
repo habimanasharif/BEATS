@@ -238,20 +238,17 @@ font-size: 14px;
   }
   
  .playlist-player{
-     position: absolute;
-     bottom: 100px;
+     margin-top: 100px;
      margin-left: 5px;
  }
  .playlist-name{
-     position: absolute;
-     bottom: 57px;
+     margin-top: 10px;
      font-size: 1em;
      font-weight: bold;
      left:auto;
  }
 .sings-number{
-    position: absolute;
-    bottom: 33px; 
+    margin-top: -2px; 
     color:black !important;
     font-size:0.8em;
 }

@@ -15,12 +15,16 @@
         position:relative;
         left: auto;
         width: 100%;
+        height: 90%;
         font-size: 0.9em;
         top:0px
     }
     .controls{
-        width: 100%;
+        width: 90%;
         margin-left: 0px;
+        position: absolute;
+        bottom:15px;
+        padding-left: 15px;
         .start{
             font-size: 10px;
         }
@@ -31,11 +35,16 @@
             width: 70%;
         }
     }
-    
+    .play-btn .fas{
+        margin-top:9px ;
+    }
+    .mainbar{
+        height: 100vh;
+    }
     .small-controls{
         display: flex;
         position: absolute;
-        bottom:80px;
+        bottom:110px;
         flex-direction: row;
         width: 90%;
         padding-left: 20px;
@@ -48,6 +57,26 @@
             text-align: center;
         }
     }
+
+    .playlists-list{
+        width: 100%;
+        display: flex;
+        height:65% ;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    
+        margin-top: 10px;
+        overflow: auto;
+        .playlist-cover{
+         width: 48%;
+        background-size: cover;
+        margin-bottom: 50px;
+         height: 140px;
+         background-color: red;
+        }
+    }
+    
 }
 @media (max-width:1012px) {
     .container{
