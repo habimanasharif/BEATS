@@ -5,7 +5,7 @@ import {FaPlay,FaHeart,FaPause} from 'react-icons/fa'
 
 
 
-const Home = ({song,play,status}) => {
+const Home = ({song,play,status,cover}) => {
     const[liked,setLiked]=useState(false);
     const[heart, setHeart]=useState(<FiHeart/>)
     const[playing,setPlaying]=useState(status);
@@ -40,8 +40,8 @@ const Home = ({song,play,status}) => {
                 <span className="heart" onClick={onlike}>
                 {heart}
             </span>
-            <span className="song-name">{song.originalname}</span>
-            <span className="song-duration">1:20</span>
+            <span className="song-name">{song.originalname} <span className='artistname'> {song.artistname}</span></span>
+            <span className="song-duration"> <span className="controls-cover shadow" style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${cover})` }}></span></span>
         </div>
     )
 }

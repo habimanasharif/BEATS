@@ -17,7 +17,7 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
     const [play, setPlay] = useState(false);
     const [status, setStatus] = useState('initial');
     const [sng,setSng]=useState([]);
-    let [playBtn, setPlayBtn] = useState(<GrPlay className="far" />)
+    let [playBtn, setPlayBtn] = useState(<GrPlay className="far big" />)
     const [state,setState]=useState("PLAYLISTS");
     const[playStatus,setPlayStatus]=useState("initial")
     const [cur,setCur]=useState("00:00");
@@ -25,19 +25,35 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
     const [files,setFiles]=useState([]);
     const [song,setSong]=useState("");
     const[cover,setCover]=useState("c9c27aa71e1a3aa54a3ef3dee82d9be7.jpg")
-    const[playlistName,setPlaylistName]=useState("Chillin Beats")
+    const[playlistName,setPlaylistName]=useState("Drill Hits")
+    const [playing,setPlaying]=useState({})
+    const [playlist,setPlaylist]=useState('61e68398fd9c0d002eeb6d97')
+    const [refetch,setRefetch]=useState('norefetch')
 
     useEffect(() => {
         if (status === 'initial') {
-            fetchAction('61e68398fd9c0d002eeb6d97');
+            fetchAction(playlist);
             if (fetchSongs.status === 'success') {
               setSng(fetchSongs.data);
               setFiles(fetchSongs.data);
               setSong(fetchSongs.data[0].filename);
               setStatus('success');
+              fetchSongs.status='done';
             }
             
           }
+            if (fetchSongs.status === 'success') {
+                console.log(playlist);
+              setSng(fetchSongs.data);
+              setFiles(fetchSongs.data);
+              setSong(fetchSongs.data[0].filename);
+              setStatus('success');
+              setRefetch('norefetch')
+            } 
+
+          if(song!==""){
+          const playn=files.filter((s)=>s.filename===song)
+             setPlaying(playn[0]);}
         const audio= document.getElementById('audio');
     const onplayed= document.getElementById("onplay");
     const  progressContainer =document.getElementById("progressContainer")
@@ -63,9 +79,9 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
         var curSec
         if(Math.floor(currentTime) >= 60){
 			
-			for (var i = 1; i<=60; i++){
-				if(Math.floor(currentTime)>=(60*i) && Math.floor(currentTime)<(60*(i+1))) {
-					curSec = Math.floor(currentTime) - (60*i);
+			for (var x = 1; x<=60; x++){
+				if(Math.floor(currentTime)>=(60*x) && Math.floor(currentTime)<(60*(x+1))) {
+					curSec = Math.floor(currentTime) - (60*x);
 				}
 			}
 		}else{
@@ -83,9 +99,10 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
         audio.currentTime =(clickX/width)*duration;
     }
     function nextSong(){
-        
         const songnames=files.map((s)=>s.filename)
         let songindex=songnames.indexOf(song);
+        const playn=files.filter((s)=>s.filename===song)
+             setPlaying(playn[0]);
         songindex++
         if(songindex>files.length-1){
             songindex=0;
@@ -96,6 +113,8 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
     function prevSong(){
         const songnames=files.map((s)=>s.filename)
         let songindex=songnames.indexOf(song);
+        const playn=files.filter((s)=>s.filename===song)
+             setPlaying(playn[0]);
         songindex--
         if(songindex < 0){
             songindex= songnames.length-1;
@@ -125,19 +144,20 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
 
         progressContainer.addEventListener('click',setProgress);
         return undefined;
-    }, [playStatus, song, files, fetchSongs, status, sng, fetchAction])
+    }, [playStatus, song, files, fetchSongs, status, sng, fetchAction, playing, refetch, playlist])
+
     const onplay = e => {
         e.preventDefault();
         if (!play) {
             setPlay(true)
             setPlayStatus('play');
-            setPlayBtn(<GrPause className="far" />)
+            setPlayBtn(<GrPause className="far big" />)
            
         }
         else {
             setPlay(false);
             setPlayStatus('pause');
-            setPlayBtn(<GrPlay className="far" />)
+            setPlayBtn(<GrPlay className="far big" />)
         }
     }
     const changeStateView=(e)=>{
@@ -148,14 +168,53 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
             setState('PLAYLISTS')
         }
     }
+    const next=(e)=>{
+        e.preventDefault()
+        const songnames=files.map((s)=>s.filename)
+        let songindex=songnames.indexOf(song);
+        const playn=files.filter((s)=>s.filename===song)
+             setPlaying(playn[0]);
+        songindex++
+        if(songindex>files.length-1){
+            songindex=0;
+        }
+        setSong(songnames[songindex]);
+    }
+    const prev=(e)=>{
+        e.preventDefault()
+        const songnames=files.map((s)=>s.filename)
+        let songindex=songnames.indexOf(song);
+        const playn=files.filter((s)=>s.filename===song)
+             setPlaying(playn[0]);
+        songindex--
+        if(songindex < 0){
+            songindex= songnames.length-1;
+        }
+        setSong(songnames[songindex]);
+    }
     
     const changeAlbum=(album)=>{
    setCover(album.cover)
    setPlaylistName(album.albumname)
+   setPlaylist(album._id)
+   fetchAction(album._id);
+   setRefetch('refetch')
+   
     }
 
     const changeAudioSrc=(src)=>{
         setSong(src)
+        if (!play) {
+            setPlay(true)
+            setPlayStatus('play');
+            setPlayBtn(<GrPause className="far big" />)
+           
+        }
+        else {
+            setPlay(false);
+            setPlayStatus('pause');
+            setPlayBtn(<GrPlay className="far big" />)
+        }
     }
     return (
         <div className="container">
@@ -169,17 +228,17 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
 
                     </div>
                     <div className="playlist">
-                        <p> Drake_Scopion</p>
+                        <p>{playing?`${playing.originalname}_${playing.artistname}`:'Loading...'}</p>
                         <h4>{playlistName}</h4>
-                        <span className="play-btn"><FaPlay className="fas" /></span>
+                        <span className="play-btn" onClick={onplay}><FaPlay className="fas" /></span>
                         <button onClick={changeStateView}>{state}</button>
                         {state==='PLAYLISTS'?(<>
                             <PlaylistContainer changeAlbum={changeAlbum}/>
                         </>):(<>
                             <div className="playlist-list" id="playlist-list">
-                            {sng.map((element)=>(song===element.filename?
-                            <Playlist song={element} play={changeAudioSrc}status={false}/>
-                            :<Playlist song={element} play={changeAudioSrc} status={true}/>))}
+                            {sng.map((element)=>(song===element.filename && playStatus==='play'?
+                            <Playlist song={element} play={changeAudioSrc}status={false} cover={cover}/>
+                            :<Playlist song={element} play={changeAudioSrc} status={true} cover={cover}/>))}
 
 
                         </div>
@@ -188,14 +247,16 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
                     </div>
                     <div className="small-controls">
                         <div><span><FiShuffle className="far" /></span></div>
-                        <div><span onClick={onplay} class="far fa-play" id="paused"   >{playBtn}</span></div>
+                        <div><span><GrChapterPrevious className="far big" onClick={prev} /></span></div>
+                        <div><span onClick={onplay} class="far fa-play " id="paused"   >{playBtn}</span></div>
+                        <div><span><GrChapterNext className="far big" onClick={next}/></span></div>
                         <div><span><FiRepeat className="far" /></span></div>
                     </div>
                     <div className="controls shadow">
                         <div className="row">
                             <div className="col-3 controls-details">
                                 <span className="controls-cover shadow" style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${cover})` }}></span>
-                                <span className="controls-name">Nice For What</span>
+                                <span className="controls-name">{ playing?playing.originalname:'Loading..'}</span>
                             </div>
                             <div className="col-3 controls-btn">
                                 <span><FiShuffle className="far" /></span>
