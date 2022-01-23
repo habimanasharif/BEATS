@@ -42,14 +42,16 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
             }
             
           }
+ if(refetch==='refetch'){
+    fetchAction(playlist);
             if (fetchSongs.status === 'success') {
-                console.log(playlist);
               setSng(fetchSongs.data);
               setFiles(fetchSongs.data);
               setSong(fetchSongs.data[0].filename);
               setStatus('success');
+
               setRefetch('norefetch')
-            } 
+            } }
 
           if(song!==""){
           const playn=files.filter((s)=>s.filename===song)
@@ -197,7 +199,9 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
    setCover(album.cover)
    setPlaylistName(album.albumname)
    setPlaylist(album._id)
-   fetchAction(album._id);
+   fetchSongs=[];
+   setStatus('initial')
+   setState('Song')
    setRefetch('refetch')
    
     }
