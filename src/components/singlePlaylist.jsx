@@ -11,7 +11,7 @@ const SinglePlaylist=({data,changeAlbum})=>{
         <div className='playlist-cover' style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${data.cover})` }}>
         <span className="play-btn playlist-player" onClick={change}><FaPlay className="fas" /></span>
         <h1 className='playlist-name'>{data.albumname}</h1>
-        <p className='sings-number'> 50 tracks</p>
+        <p className='sings-number'> {data.songsNo} tracks</p>
         </div>
     )
 }
