@@ -24,10 +24,10 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
      const [end,setEnd]=useState('00:00');
     const [files,setFiles]=useState([]);
     const [song,setSong]=useState("");
-    const[cover,setCover]=useState("c9c27aa71e1a3aa54a3ef3dee82d9be7.jpg")
+    const[cover,setCover]=useState("0714388eb0b539e133123d5ee5fb5358.jpg")
     const[playlistName,setPlaylistName]=useState("Drill Hits")
     const [playing,setPlaying]=useState({})
-    const [playlist,setPlaylist]=useState('61e68398fd9c0d002eeb6d97')
+    const [playlist,setPlaylist]=useState('640f653a16fde472093d0e72')
     const [refetch,setRefetch]=useState('norefetch')
 
     useEffect(() => {
