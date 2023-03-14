@@ -41,7 +41,7 @@ const Home = ({song,play,status,cover}) => {
                 {heart}
             </span>
             <span className="song-name">{song.originalname} <span className='artistname'> {song.artistname}</span></span>
-            <span className="song-duration"> <span className="controls-cover shadow" style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${cover})` }}></span></span>
+            <span className="song-duration"> <span className="controls-cover shadow" style={{ backgroundImage: `url(https://beats-api.onrender.com/image/view/${cover})` }}></span></span>
         </div>
     )
 }

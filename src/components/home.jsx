@@ -228,7 +228,7 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
 
                 </div>
                 <div className="col-md-8 col-sm-12 mainbar">
-                    <div style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${cover})` }} className="album-cover shadow-lg" >
+                    <div style={{ backgroundImage: `url(https://beats-api.onrender.com/image/view/${cover})` }} className="album-cover shadow-lg" >
 
                     </div>
                     <div className="playlist">
@@ -259,7 +259,7 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
                     <div className="controls shadow">
                         <div className="row">
                             <div className="col-3 controls-details">
-                                <span className="controls-cover shadow" style={{ backgroundImage: `url(https://beats-api.herokuapp.com/image/view/${cover})` }}></span>
+                                <span className="controls-cover shadow" style={{ backgroundImage: `url(https://beats-api.onrender.com/image/view/${cover})` }}></span>
                                 <span className="controls-name">{ playing?playing.originalname:'Loading..'}</span>
                             </div>
                             <div className="col-3 controls-btn">
@@ -278,7 +278,7 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
 
                                 </span> <span className="end">{end}</span>
                             </div>
-                            <audio src={`https://beats-api.herokuapp.com/song/play/${song}`} id="audio"></audio>
+                            <audio src={`https://beats-api.onrender.com/song/play/${song}`} id="audio"></audio>
                         </div>
                     </div>
                 </div>
