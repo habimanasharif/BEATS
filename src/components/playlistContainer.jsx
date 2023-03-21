@@ -23,7 +23,7 @@ const PlaylistContainer=({ fetchAlbumAction: fetchAction, fetchAlbum,changeAlbum
 
     return(
         <div className="playlists-list">
-         {playlist.map((playlist)=>(<SinglePlaylist data={playlist} changeAlbum={changeAlbum}/>))}
+         {playlist.map((playlist,index)=>(<SinglePlaylist data={playlist} key={index} changeAlbum={changeAlbum}/>))}
       
         </div>
     )

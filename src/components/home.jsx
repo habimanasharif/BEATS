@@ -240,9 +240,9 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
                             <PlaylistContainer changeAlbum={changeAlbum}/>
                         </>):(<>
                             <div className="playlist-list" id="playlist-list">
-                            {sng.map((element)=>(song===element.filename && playStatus==='play'?
-                            <Playlist song={element} play={changeAudioSrc}status={false} cover={cover}/>
-                            :<Playlist song={element} play={changeAudioSrc} status={true} cover={cover}/>))}
+                            {sng.map((element,index)=>(song===element.filename && playStatus==='play'?
+                            <Playlist song={element} play={changeAudioSrc}status={false}  key={index} cover={cover}/>
+                            :<Playlist song={element} play={changeAudioSrc} status={true} key={index} cover={cover}/>))}
 
 
                         </div>
@@ -252,7 +252,7 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
                     <div className="small-controls">
                         <div><span><FiShuffle className="far" /></span></div>
                         <div><span><GrChapterPrevious className="far big" onClick={prev} /></span></div>
-                        <div><span onClick={onplay} class="far fa-play " id="paused"   >{playBtn}</span></div>
+                        <div><span onClick={onplay} className="far fa-play " id="paused"   >{playBtn}</span></div>
                         <div><span><GrChapterNext className="far big" onClick={next}/></span></div>
                         <div><span><FiRepeat className="far" /></span></div>
                     </div>
@@ -265,7 +265,7 @@ const Home = ({ fetchSongAction: fetchAction, fetchSongs }) => {
                             <div className="col-3 controls-btn">
                                 <span><FiShuffle className="far" /></span>
                                 <span><GrChapterPrevious className="far" id="prev" /></span>
-                                <span onClick={onplay} class="far fa-play" id="paused"   >{playBtn}</span>
+                                <span onClick={onplay} className="far fa-play" id="paused"   >{playBtn}</span>
                                 <span><GrChapterNext className="far" id="next"/></span>
                                 <span><FiRepeat className="far" /></span>
                             </div>

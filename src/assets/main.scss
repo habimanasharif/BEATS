@@ -51,7 +51,7 @@ position: relative;
 }
 .play-line{
     display:inline-block;
-    width: 80%;
+    width: 78%;
     height: 7px;
     background:#efefef;
     margin-top:25px;
@@ -130,7 +130,7 @@ z-index: 1;
     height:260px ;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: left;
 
     margin-top: 10px;
     overflow: auto;
@@ -138,6 +138,7 @@ z-index: 1;
      width: 30%;
     background-size: cover;
     margin-top:50px;
+    margin-left: 15px;
 
      height: 140px;
      background-color: red;
@@ -230,7 +231,7 @@ font-size: 14px;
  .controls-name{
      position: absolute;
      font-weight: bold;
-     top:12px;
+     top:5px;
  }
  .start{
      margin-top:20px !important;
